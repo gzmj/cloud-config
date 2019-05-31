@@ -73,9 +73,9 @@ spring:
       ##日志采样比例
       percentage: 1.0
 
-feign:
-  hystrix:
-    enabled: true
+#feign:
+#  hystrix:
+#    enabled: true
 
 #目的：防止服务重启后，第一次访问超时
 hystrix:
