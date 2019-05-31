@@ -1,0 +1,98 @@
+#服务器发现注册配置
+eureka:
+  client:
+    serviceUrl:
+      #配置服务中心(可配置多个,用逗号隔开)
+      defaultZone: http://minjie:minjie@registry-server:9000/eureka/
+  
+#spring配置
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/cloud-project?useSSL=false&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: 123456
+      initial-size: 50
+      max-active: 1000
+      min-idle: 20
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1 FROM DUAL
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      filter: stat,wall,log4j
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/cloud-project?useSSL=false&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+#    username: root
+#    password: 123456
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+  rabbitmq:
+    ##rabbitmq安装服务器ip
+    host: localhost
+    ##rabbitmq服务端监听端口
+    port: 5672
+    ##访问rabbitmq用户名
+    username: guest
+    ##访问rabbitmq密码
+    password: guest
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    pool:
+      # 连接池最大连接数（使用负值表示没有限制）
+      max-active: 10
+      #连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+      #连接池中的最大空闲连接
+      max-idle: 10
+      #连接池中的最小空闲连接
+      min-idle: 0
+    #连接超时时间（毫秒）
+    timeout: 60000
+  cloud:
+    #消息总线
+    bus:
+      trace:
+        #开启消息跟踪
+        enabled: true
+  zipkin:
+    ##zipkinServer地址
+    base-url: http://zipkin-server:9020
+  sleuth:
+    sampler:
+      ##日志采样比例
+      percentage: 1.0
+
+feign:
+  hystrix:
+    enabled: true
+
+authserver:
+  hostname: auth-server
+  port: 5000
+      
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://${authserver.hostname}:${authserver.port}/current
+      id: ${spring.application.name}
+    client:
+      clientId: service
+      clientSecret: 123456
+      accessTokenUri: http://${authserver.hostname}:${authserver.port}/oauth/token
+      grant-type: client_credentials,refresh_token,password,authorization_code,implicit
+      scope: server
+      
+logging:
+  level:
+    com.mj.mapper: debug #打印SQL日志
