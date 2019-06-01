@@ -80,6 +80,8 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 60000
+        timeout:
+          enabled: true
 feign:
   client:
     config:
