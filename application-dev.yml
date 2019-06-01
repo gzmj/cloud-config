@@ -84,7 +84,7 @@ hystrix:
           enabled: true
       circuitBreaker:
         ircuitBreaker:
-          forceClosed: true
+          forceClosed: false
         errorThresholdPercentage: 30
         requestVolumeThreshold: 5
         sleepWindowInMilliseconds: 60000
