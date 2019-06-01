@@ -79,13 +79,15 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000
+            timeoutInMilliseconds: 60000
         timeout:
           enabled: true
       circuitBreaker:
+        ircuitBreaker:
+          forceClosed: true
         errorThresholdPercentage: 30
         requestVolumeThreshold: 5
-        sleepWindowInMilliseconds: 5000
+        sleepWindowInMilliseconds: 60000
 feign:
   client:
     config:
