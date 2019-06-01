@@ -74,6 +74,7 @@ spring:
       percentage: 1.0
 
 hystrix:
+  share-security-context: true
   command:
     default:
       execution:
