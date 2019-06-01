@@ -92,8 +92,8 @@ feign:
       default:
         connectTimeout: 60000
         readTimeout: 60000
-#  hystrix:
-#    enabled: true
+  hystrix:
+    enabled: true
     
 ### Ribbon 配置
 ribbon:
