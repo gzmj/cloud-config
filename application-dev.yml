@@ -73,9 +73,9 @@ spring:
       ##日志采样比例
       percentage: 1.0
 
-feign:
-  hystrix:
-    enabled: true
+#feign:
+#  hystrix:
+#    enabled: true
     
 ### Hystrix 配置
 hystrix:
