@@ -109,12 +109,12 @@ ribbon:
   ReadTimeout: 5000
 
 #目的：防止服务重启后，第一次访问超时
-hystrix:
-  command:
-    default:
-      execution:
-        timeout:
-          enabled: false
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: false
 
 authserver:
   hostname: auth-server
